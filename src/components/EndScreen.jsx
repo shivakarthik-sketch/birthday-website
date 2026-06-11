@@ -70,7 +70,7 @@ function EndScreen() {
             marginBottom: "25px",
           }}
         >
-          Kruthika
+          SPOORITHI
         </h2>
 
         {/* Final AI Artwork */}

@@ -82,7 +82,7 @@ function HeroReveal({ setStep }) {
             margin: 0,
           }}
         >
-          KRUTHIKA
+          SPOORITHI
         </motion.h1>
       </div>
 
