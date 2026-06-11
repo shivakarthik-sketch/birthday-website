@@ -9,7 +9,7 @@ function Verification({ setStep }) {
   const checkAnswer = () => {
     const normalized = answer.trim().toLowerCase();
 
-    if (normalized === "kruthika") {
+    if (normalized === "spoorthi") {
       setStatus("success");
 
       setTimeout(() => {
@@ -77,7 +77,7 @@ function Verification({ setStep }) {
               marginTop: "15px",
             }}
           >
-            Welcome, Kruthika 🎉
+            Welcome, Spoorthi 🎉
           </motion.h3>
         )}
 

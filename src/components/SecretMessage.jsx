@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 function SecretMessage({ setStep }) {
   const lines = [
-    "Dear Kruthika 💌",
+    "Dear Spoorthi 💌",
     "",
     "Every year adds another chapter to your story.",
     "",

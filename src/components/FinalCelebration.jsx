@@ -108,7 +108,7 @@ function FinalCelebration({ setStep }) {
             marginTop: "10px",
           }}
         >
-          SPOORITHI 🌸
+          SPOORTHI 🌸
         </motion.h2>
 
         <motion.div

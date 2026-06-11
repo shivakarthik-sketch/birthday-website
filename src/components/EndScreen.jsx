@@ -70,7 +70,7 @@ function EndScreen() {
             marginBottom: "25px",
           }}
         >
-          SPOORITHI
+          SPOORTHI
         </h2>
 
         {/* Final AI Artwork */}
