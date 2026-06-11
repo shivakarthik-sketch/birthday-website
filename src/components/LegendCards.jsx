@@ -5,7 +5,7 @@ function LegendCards({ setStep }) {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.3,
+        staggerChildren: 0.25,
       },
     },
   };
@@ -13,16 +13,34 @@ function LegendCards({ setStep }) {
   const cardVariants = {
     hidden: {
       opacity: 0,
-      y: 50,
+      y: 40,
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.7,
       },
     },
   };
+
+  const cards = [
+    {
+      emoji: "🌸",
+      title: "Kind Heart",
+      text: "Always caring, supportive, and ready to help the people around her.",
+    },
+    {
+      emoji: "✨",
+      title: "Positive Energy",
+      text: "Brings smiles, laughter, and good vibes wherever she goes.",
+    },
+    {
+      emoji: "💪",
+      title: "Strong & Determined",
+      text: "Faces challenges with courage and keeps moving forward.",
+    },
+  ];
 
   return (
     <motion.div
@@ -32,113 +50,97 @@ function LegendCards({ setStep }) {
       style={{
         minHeight: "100vh",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        gap: "20px",
-        flexWrap: "wrap",
-        padding: "20px",
-        flexDirection: "column",
+        gap: "30px",
+        padding: "30px",
       }}
     >
-      <motion.div
-        variants={cardVariants}
-        whileHover={{
-          scale: 1.05,
-        }}
+      <motion.h1
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
         style={{
-          width: "500px",
-          padding: "20px",
-          borderRadius: "24px",
-          background: "#1a1a1a",
-          boxShadow: "0 0 20px rgba(255,215,0,0.2)",
+          fontSize: "3rem",
+          textAlign: "center",
+          color: "#ffd700",
         }}
       >
-        <h2
-          style={{
-            color: "gold",
-            fontSize: "3rem",
-          }}
-        >
-          Origin Story
-        </h2>
+        ✨ What Makes You Special ✨
+      </motion.h1>
 
-        <p>Born: 16 June</p>
-
-        <p>Status: Still causing trouble</p>
-      </motion.div>
-
-      <motion.div
-        variants={cardVariants}
-        whileHover={{
-          scale: 1.05,
-        }}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
         style={{
-          width: "500px",
-          padding: "20px",
-          borderRadius: "24px",
-          background: "#1a1a1a",
-          boxShadow: "0 0 20px rgba(255,215,0,0.2)",
+          maxWidth: "700px",
+          textAlign: "center",
+          color: "#dddddd",
+          fontSize: "1.1rem",
+          lineHeight: "1.8",
         }}
       >
-        <h2
+        Every person is unique, but some people leave a positive impact
+        wherever they go. These are just a few reasons why today is worth
+        celebrating.
+      </motion.p>
+
+      {cards.map((card, index) => (
+        <motion.div
+          key={index}
+          variants={cardVariants}
+          whileHover={{
+            scale: 1.03,
+          }}
           style={{
-            color: "gold",
-            fontSize: "3rem",
+            width: "min(600px, 90vw)",
+            padding: "25px",
+            borderRadius: "24px",
+            background: "rgba(255,255,255,0.05)",
+            backdropFilter: "blur(10px)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            boxShadow: "0 0 20px rgba(255,215,0,0.15)",
           }}
         >
-          Special Skills
-        </h2>
+          <h2
+            style={{
+              color: "#ffd700",
+              marginBottom: "12px",
+            }}
+          >
+            {card.emoji} {card.title}
+          </h2>
 
-        <p>✓ Eats First</p>
-        <p>✓ Arrives Late</p>
-        <p>✓ Sleeps Anywhere</p>
-      </motion.div>
-
-      <motion.div
-        variants={cardVariants}
-        whileHover={{
-          scale: 1.05,
-        }}
-        style={{
-          width: "500px",
-          padding: "20px",
-          borderRadius: "24px",
-          background: "#1a1a1a",
-          boxShadow: "0 0 20px rgba(255,215,0,0.2)",
-        }}
-      >
-        <h2
-          style={{
-            color: "gold",
-            fontSize: "3rem",
-          }}
-        >
-          Threat Level
-        </h2>
-
-        <p>98%</p>
-
-        <p>Dangerously Unsupervised</p>
-      </motion.div>
+          <p
+            style={{
+              color: "#f5f5f5",
+              lineHeight: "1.7",
+            }}
+          >
+            {card.text}
+          </p>
+        </motion.div>
+      ))}
 
       <motion.button
-        whileHover={{
-          scale: 1.1,
-        }}
-        whileTap={{
-          scale: 0.95,
-        }}
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => setStep(4)}
         style={{
-          padding: "12px 24px",
-          background: "gold",
+          marginTop: "10px",
+          padding: "14px 30px",
+          borderRadius: "50px",
           border: "none",
-          borderRadius: "8px",
           cursor: "pointer",
+          background:
+            "linear-gradient(135deg, #ff69b4, #ffd700)",
+          color: "white",
           fontWeight: "bold",
+          fontSize: "1rem",
         }}
       >
-        Continue →
+        Continue The Journey ✨
       </motion.button>
     </motion.div>
   );

@@ -6,44 +6,34 @@ import LegendCards from "./components/LegendCards";
 import Achievements from "./components/Achievements";
 import BalloonGame from "./components/BalloonGame";
 import CakeSection from "./components/CakeSection";
-import SecretMessage from "./components/SecretMessage"
-import FinalCelebration from "./components/FinalCelebration";;
+import SecretMessage from "./components/SecretMessage";
+import FinalCelebration from "./components/FinalCelebration";
 import EndScreen from "./components/EndScreen";
+import FloatingParticles from "./components/FloatingParticles";
+import BackgroundMusic from "./components/BackgroundMusic";
 
 function App() {
   const [step, setStep] = useState(0);
 
-  if (step === 0) {
-    return <BootScreen setStep={setStep} />;
-  }
+  return (
+    <>
+      <FloatingParticles />
 
-  if (step === 1) {
-    return <Verification setStep={setStep} />;
-  }
-  if (step === 2) {
-    return <HeroReveal setStep={setStep} />;
-  }
-  if(step === 3){
-  return <LegendCards setStep={setStep}/>;
-}
-if (step === 4) {
-  return <Achievements setStep={setStep}/>;
-}
-if (step === 5) {
-  return <BalloonGame setStep={setStep}/>;
-}
-if (step === 6) {
-  return <CakeSection  setStep={setStep}/>;
-}
-if (step === 7) {
-  return <SecretMessage setStep={setStep} />;
-}
-if (step === 8) {
-  return <FinalCelebration setStep={setStep} />;
-}
-if (step === 9) {
-  return <EndScreen />;
-}
+      {/* Music starts after verification */}
+      {step >= 2 && <BackgroundMusic />}
+
+      {step === 0 && <BootScreen setStep={setStep} />}
+      {step === 1 && <Verification setStep={setStep} />}
+      {step === 2 && <HeroReveal setStep={setStep} />}
+      {step === 3 && <LegendCards setStep={setStep} />}
+      {step === 4 && <Achievements setStep={setStep} />}
+      {step === 5 && <BalloonGame setStep={setStep} />}
+      {step === 6 && <CakeSection setStep={setStep} />}
+      {step === 7 && <SecretMessage setStep={setStep} />}
+      {step === 8 && <FinalCelebration setStep={setStep} />}
+      {step === 9 && <EndScreen />}
+    </>
+  );
 }
 
 export default App;

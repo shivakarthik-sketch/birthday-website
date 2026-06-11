@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 function Verification({ setStep }) {
   const [answer, setAnswer] = useState("");
-  const [status, setStatus] = useState("idle"); // idle | success | error
+  const [status, setStatus] = useState("idle");
   const [shake, setShake] = useState(false);
 
   const checkAnswer = () => {
@@ -13,88 +14,97 @@ function Verification({ setStep }) {
 
       setTimeout(() => {
         setStep(2);
-      }, 1200);
+      }, 1500);
     } else {
       setStatus("error");
-
       setShake(true);
-      setTimeout(() => setShake(false), 500);
+
+      setTimeout(() => {
+        setShake(false);
+      }, 500);
     }
   };
 
   return (
     <div style={styles.wrapper}>
-      <div
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
         style={{
           ...styles.card,
-          transform: shake ? "translateX(0px)" : "translateX(0px)",
-          animation: shake ? "shake 0.4s" : "fadeIn 0.6s ease",
-          borderColor:
-            status === "success"
-              ? "#00ff88"
-              : status === "error"
-              ? "#ff4d4d"
-              : "#333",
-          boxShadow:
-            status === "success"
-              ? "0 0 25px #00ff8855"
-              : status === "error"
-              ? "0 0 25px #ff4d4d55"
-              : "0 10px 30px rgba(0,0,0,0.3)",
+          animation: shake ? "shake 0.4s" : "",
         }}
       >
-        <h1 style={styles.title}>Identity Verification</h1>
+        <div style={styles.emoji}>🎂✨</div>
 
-        <p style={styles.subtitle}>Who is the birthday legend today?</p>
+        <h1 style={styles.title}>
+          Birthday Access Portal
+        </h1>
+
+        <p style={styles.subtitle}>
+          A special celebration has been prepared.
+        </p>
+
+        <p style={styles.question}>
+          Who is today's birthday star? 🌸
+        </p>
 
         <input
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && checkAnswer()}
-          placeholder="Enter Name"
+          onKeyDown={(e) =>
+            e.key === "Enter" && checkAnswer()
+          }
+          placeholder="Enter your name..."
           style={styles.input}
         />
 
-        <button onClick={checkAnswer} style={styles.button}>
-          Verify Access
-        </button>
-
-        <h2
-          style={{
-            marginTop: "10px",
-            color:
-              status === "success"
-                ? "#00ff88"
-                : status === "error"
-                ? "#ff4d4d"
-                : "transparent",
-            transition: "all 0.3s ease",
-          }}
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={checkAnswer}
+          style={styles.button}
         >
-          {status === "success"
-            ? "ACCESS APPROVED ✨"
-            : status === "error"
-            ? "ACCESS DENIED. Try Again."
-            : ""}
-        </h2>
-      </div>
+          Unlock Celebration ✨
+        </motion.button>
 
-      {/* animations */}
+        {status === "success" && (
+          <motion.h3
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            style={{
+              color: "#00ff88",
+              marginTop: "15px",
+            }}
+          >
+            Welcome, Kruthika 🎉
+          </motion.h3>
+        )}
+
+        {status === "error" && (
+          <motion.h3
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            style={{
+              color: "#ff6b6b",
+              marginTop: "15px",
+            }}
+          >
+            Hmm... try again 😊
+          </motion.h3>
+        )}
+      </motion.div>
+
       <style>
         {`
-          @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-          }
-
-          @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-6px); }
-            50% { transform: translateX(6px); }
-            75% { transform: translateX(-6px); }
-            100% { transform: translateX(0); }
-          }
-        `}
+        @keyframes shake{
+          0%{transform:translateX(0)}
+          25%{transform:translateX(-5px)}
+          50%{transform:translateX(5px)}
+          75%{transform:translateX(-5px)}
+          100%{transform:translateX(0)}
+        }
+      `}
       </style>
     </div>
   );
@@ -102,56 +112,66 @@ function Verification({ setStep }) {
 
 const styles = {
   wrapper: {
-    height: "100vh",
+    minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "radial-gradient(circle at top, #1a1a2e, #0f0f1a)",
-    fontFamily: "sans-serif",
+    padding: "20px",
   },
 
   card: {
-    padding: "30px",
-    borderRadius: "16px",
-    border: "2px solid #333",
+    width: "420px",
+    maxWidth: "95%",
+    padding: "40px",
+    borderRadius: "24px",
+    background: "rgba(255,255,255,0.05)",
+    backdropFilter: "blur(15px)",
+    border: "1px solid rgba(255,255,255,0.1)",
     textAlign: "center",
-    width: "320px",
-    background: "rgba(20,20,30,0.9)",
-    transition: "all 0.3s ease",
+    boxShadow: "0 0 30px rgba(255,215,0,0.1)",
+  },
+
+  emoji: {
+    fontSize: "3rem",
+    marginBottom: "15px",
   },
 
   title: {
-    color: "white",
+    color: "#ffd700",
     marginBottom: "10px",
   },
 
   subtitle: {
-    color: "#aaa",
+    color: "#ddd",
+    marginBottom: "15px",
+  },
+
+  question: {
+    color: "#ffb6c1",
     marginBottom: "20px",
-    fontSize: "14px",
   },
 
   input: {
     width: "100%",
-    padding: "12px",
-    borderRadius: "10px",
-    border: "1px solid #444",
-    background: "#111",
+    padding: "14px",
+    borderRadius: "12px",
+    border: "1px solid rgba(255,255,255,0.15)",
+    background: "rgba(255,255,255,0.05)",
     color: "white",
-    outline: "none",
     marginBottom: "15px",
+    outline: "none",
   },
 
   button: {
     width: "100%",
-    padding: "12px",
-    borderRadius: "10px",
+    padding: "14px",
     border: "none",
+    borderRadius: "50px",
     cursor: "pointer",
     fontWeight: "bold",
-    color: "#000",
-    background: "linear-gradient(135deg, #FCE881, #F5AF19)",
-    transition: "transform 0.2s ease",
+    color: "white",
+    background:
+      "linear-gradient(135deg,#ff69b4,#ffd700)",
   },
 };
 

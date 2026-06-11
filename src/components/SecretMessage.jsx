@@ -3,10 +3,23 @@ import { motion } from "framer-motion";
 
 function SecretMessage({ setStep }) {
   const lines = [
-    "You are impossible to deal with.",
-    "Somehow we survived all those classes.",
-    "Thanks for always being around.",
-    "Hope this year is even crazier than the last one.",
+    "Dear Kruthika 💌",
+    "",
+    "Every year adds another chapter to your story.",
+    "",
+    "And honestly, this chapter deserves to be celebrated.",
+    "",
+    "Thank you for the laughter, the conversations, the memories, and all the little moments that made ordinary days more interesting.",
+    "",
+    "You have a way of bringing positive energy wherever you go.",
+    "",
+    "I hope this year brings you happiness, success, good health, and countless reasons to smile.",
+    "",
+    "Keep being yourself.",
+    "",
+    "The world needs more people like that. ✨",
+    "",
+    "Happy Birthday, Kruthika. 🎂🎉❤️",
   ];
 
   const [visibleLines, setVisibleLines] = useState([]);
@@ -25,7 +38,7 @@ function SecretMessage({ setStep }) {
       if (current >= lines.length) {
         clearInterval(interval);
       }
-    }, 1500);
+    }, 1200);
 
     return () => clearInterval(interval);
   }, []);
@@ -43,30 +56,32 @@ function SecretMessage({ setStep }) {
       <motion.div
         initial={{
           opacity: 0,
-          scale: 0.9,
+          scale: 0.95,
         }}
         animate={{
           opacity: 1,
           scale: 1,
         }}
         style={{
-          width: "700px",
-          maxWidth: "90%",
+          width: "800px",
+          maxWidth: "95%",
           background: "rgba(255,255,255,0.05)",
-          backdropFilter: "blur(10px)",
+          backdropFilter: "blur(15px)",
           border: "1px solid rgba(255,255,255,0.1)",
           borderRadius: "24px",
           padding: "40px",
           textAlign: "center",
+          boxShadow: "0 0 40px rgba(255,215,0,0.15)",
         }}
       >
         <h1
           style={{
-            color: "gold",
+            color: "#ffd700",
             marginBottom: "30px",
+            fontSize: "2.8rem",
           }}
         >
-          💌 Secret Message
+          💌 A Special Message
         </h1>
 
         {visibleLines.map((line, index) => (
@@ -74,7 +89,7 @@ function SecretMessage({ setStep }) {
             key={index}
             initial={{
               opacity: 0,
-              y: 20,
+              y: 15,
             }}
             animate={{
               opacity: 1,
@@ -84,9 +99,10 @@ function SecretMessage({ setStep }) {
               duration: 0.6,
             }}
             style={{
-              fontSize: "1.3rem",
-              marginBottom: "18px",
-              lineHeight: "1.8",
+              fontSize: "1.2rem",
+              lineHeight: "1.9",
+              marginBottom: "10px",
+              color: "#f5f5f5",
             }}
           >
             {line}
@@ -103,16 +119,19 @@ function SecretMessage({ setStep }) {
             }}
             onClick={() => setStep(8)}
             style={{
-              marginTop: "25px",
-              padding: "12px 24px",
-              background: "gold",
+              marginTop: "30px",
+              padding: "14px 30px",
+              borderRadius: "50px",
               border: "none",
-              borderRadius: "8px",
               cursor: "pointer",
+              background:
+                "linear-gradient(135deg,#ff69b4,#ffd700)",
+              color: "white",
               fontWeight: "bold",
+              fontSize: "1rem",
             }}
           >
-            Continue →
+            One Last Surprise ✨
           </motion.button>
         )}
       </motion.div>

@@ -19,81 +19,111 @@ function BootScreen({ setStep }) {
 
         return prev + 1;
       });
-    }, 40);
+    }, 35);
 
     return () => clearInterval(timer);
   }, [setStep]);
+
+  const messages = [
+    "🌸 Gathering birthday wishes...",
+    "🎂 Preparing the cake...",
+    "✨ Adding some magic...",
+    "🎉 Loading happiness...",
+    "💖 Finalizing celebration..."
+  ];
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       style={{
-        height: "100vh",
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        gap: "20px",
         textAlign: "center",
+        padding: "20px",
       }}
     >
-      <motion.h1
+      <motion.div
         animate={{
-          opacity: [0.5, 1, 0.5],
+          rotate: [0, 5, -5, 0],
         }}
         transition={{
           duration: 2,
           repeat: Infinity,
         }}
         style={{
-          color: "gold",
+          fontSize: "5rem",
+          marginBottom: "20px",
         }}
       >
-        Initializing Birthday Protocol...
+        🎂
+      </motion.div>
+
+      <motion.h1
+        animate={{
+          opacity: [0.6, 1, 0.6],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+        }}
+        style={{
+          color: "#ffd700",
+          fontSize: "clamp(2rem,5vw,4rem)",
+          marginBottom: "20px",
+        }}
+      >
+        Preparing Something Special...
       </motion.h1>
-
-      <motion.p
-        initial={{ x: -20, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
-        🎂 Loading Cake...
-      </motion.p>
-
-      <motion.p
-        initial={{ x: -20, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.4 }}
-      >
-        🎭 Loading Chaos...
-      </motion.p>
-
-      <motion.p
-        initial={{ x: -20, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.6 }}
-      >
-        🎉 Loading One More Year...
-      </motion.p>
 
       <div
         style={{
-          width: "350px",
+          marginBottom: "25px",
+        }}
+      >
+        {messages.map((msg, index) => (
+          <motion.p
+            key={index}
+            initial={{
+              opacity: 0,
+              x: -20,
+            }}
+            animate={{
+              opacity: progress > index * 20 ? 1 : 0.2,
+              x: 0,
+            }}
+            style={{
+              marginBottom: "10px",
+              color: "#dddddd",
+            }}
+          >
+            {msg}
+          </motion.p>
+        ))}
+      </div>
+
+      <div
+        style={{
+          width: "400px",
+          maxWidth: "90%",
           height: "24px",
-          background: "#222",
-          borderRadius: "20px",
+          background: "rgba(255,255,255,0.08)",
+          borderRadius: "50px",
           overflow: "hidden",
-          border: "1px solid rgba(255,215,0,0.3)",
+          border: "1px solid rgba(255,255,255,0.1)",
         }}
       >
         <motion.div
           style={{
             height: "100%",
-            background:
-              "linear-gradient(90deg, gold, #ffd700, #fff4a3)",
-            boxShadow: "0 0 15px gold",
             width: `${progress}%`,
+            background:
+              "linear-gradient(90deg,#ff69b4,#ffd700)",
+            boxShadow:
+              "0 0 20px rgba(255,215,0,0.5)",
           }}
         />
       </div>
@@ -106,30 +136,34 @@ function BootScreen({ setStep }) {
           duration: 1,
           repeat: Infinity,
         }}
+        style={{
+          marginTop: "15px",
+          color: "#ffd700",
+        }}
       >
         {progress}%
       </motion.h2>
 
       {progress === 100 && (
-        <motion.h1
+        <motion.div
           initial={{
-            scale: 0,
             opacity: 0,
+            scale: 0.8,
           }}
           animate={{
-            scale: 1,
             opacity: 1,
-          }}
-          transition={{
-            duration: 0.5,
-          }}
-          style={{
-            color: "gold",
-            textShadow: "0 0 20px gold",
+            scale: 1,
           }}
         >
-          ACCESS GRANTED ✅
-        </motion.h1>
+          <h2
+            style={{
+              marginTop: "20px",
+              color: "#ffb6c1",
+            }}
+          >
+            🎉 Celebration Ready 🎉
+          </h2>
+        </motion.div>
       )}
     </motion.div>
   );
