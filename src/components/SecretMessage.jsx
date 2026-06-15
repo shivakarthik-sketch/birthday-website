@@ -19,7 +19,7 @@ function SecretMessage({ setStep }) {
     "",
     "The world needs more people like that. ✨",
     "",
-    "Happy Birthday, Kruthika. 🎂🎉❤️",
+    "Happy Birthday, Spoorthi. 🎂🎉❤️",
   ];
 
   const [visibleLines, setVisibleLines] = useState([]);
